@@ -1,0 +1,22 @@
+2020-11-05 12:35:09,377 INFO werkzeug MainThread :  * Running on http://localhost:5555/ (Press CTRL+C to quit)
+2020-11-05 12:35:37,032 INFO werkzeug MainThread :  * Running on http://localhost:5555/ (Press CTRL+C to quit)
+2020-11-05 12:36:11,526 INFO werkzeug MainThread :  * Running on http://localhost:50962/ (Press CTRL+C to quit)
+2020-11-05 12:36:56,563 INFO werkzeug MainThread : 127.0.0.1 - - [05/Nov/2020 12:36:56] "GET /) HTTP/1.1" 404 -
+2020-11-05 12:36:56,772 INFO werkzeug MainThread : 127.0.0.1 - - [05/Nov/2020 12:36:56] "GET /favicon.ico HTTP/1.1" 404 -
+2020-11-05 12:36:59,974 INFO werkzeug MainThread : 127.0.0.1 - - [05/Nov/2020 12:36:59] "GET / HTTP/1.1" 200 -
+2020-11-05 12:37:40,188 INFO werkzeug MainThread : 127.0.0.1 - - [05/Nov/2020 12:37:40] "GET /register HTTP/1.1" 400 -
+2020-11-05 12:38:10,145 INFO werkzeug MainThread :  * Running on http://localhost:62013/ (Press CTRL+C to quit)
+2020-11-05 12:41:52,354 INFO werkzeug MainThread :  * Running on http://localhost:5555/ (Press CTRL+C to quit)
+2020-11-05 12:43:12,162 INFO werkzeug MainThread : 127.0.0.1 - - [05/Nov/2020 12:43:12] "POST /register?username=joe&password=123 HTTP/1.1" 405 -
+2020-11-05 12:44:22,890 INFO werkzeug MainThread : 127.0.0.1 - - [05/Nov/2020 12:44:22] "GET /register?username=joe&password=123 HTTP/1.1" 500 -
+2020-11-05 12:45:28,513 INFO werkzeug MainThread :  * Running on http://localhost:53858/ (Press CTRL+C to quit)
+2020-11-05 12:46:42,412 INFO werkzeug MainThread : 127.0.0.1 - - [05/Nov/2020 12:46:42] "GET /register?username=joe&password=123 HTTP/1.1" 500 -
+2020-11-05 12:47:38,285 INFO werkzeug MainThread :  * Running on http://localhost:59191/ (Press CTRL+C to quit)
+2020-11-05 13:04:28,816 INFO werkzeug MainThread :  * Running on http://localhost:58238/ (Press CTRL+C to quit)
+2020-11-05 13:06:02,685 INFO werkzeug MainThread : 127.0.0.1 - - [05/Nov/2020 13:06:02] "GET /register?username=joe&password=123 HTTP/1.1" 500 -
+2020-11-05 13:19:06,300 INFO werkzeug MainThread :  * Running on http://localhost:5555/ (Press CTRL+C to quit)
+2020-11-05 13:19:28,979 INFO werkzeug MainThread : 127.0.0.1 - - [05/Nov/2020 13:19:28] "GET /register?username=joe&password=123 HTTP/1.1" 200 -
+2020-11-05 14:08:12,406 INFO werkzeug MainThread :  * Running on http://localhost:50563/ (Press CTRL+C to quit)
+2020-11-05 14:09:34,727 INFO werkzeug MainThread :  * Running on http://localhost:5555/ (Press CTRL+C to quit)
+2020-11-05 14:10:08,631 INFO werkzeug MainThread : 127.0.0.1 - - [05/Nov/2020 14:10:08] "POST /register HTTP/1.1" 400 -
+2020-11-05 14:11:36,897 INFO werkzeug MainThread :  * Running on http://localhost:5555/ (Press CTRL+C to quit)
