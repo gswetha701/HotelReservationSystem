@@ -1,0 +1,102 @@
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url('/assets/images/across-bg.jpg');
+
+    h2 {
+        font-size: 58px;
+        padding: 100px 0px;
+    }
+}
+
+.payment-container {
+
+    h2 {
+        margin: 15px 0px;
+    }
+
+    .selectedHotel {
+        margin: 20px 0px;
+
+        .roomImage {
+            height: 100px;
+            width: 180px;
+            border-radius: 5px;
+        }
+    }
+
+    .selectedDataContainer {
+        padding: 10px;
+
+        .selectedLocation {
+            padding-right: 10px;
+            border-right: 1px solid #c8c8c8;
+        }
+        
+        .selectedDates {
+            padding: 0px 10px;
+            border-right: 1px solid #c8c8c8;
+        }
+        
+        .selectedRoomType {
+            padding-left: 10px;
+        }
+    }
+}
+
+.roomInfo {
+    padding: 20px;
+
+    .roomPrice {
+        margin: 25px 0px;
+        padding-top: 10px;
+        border-top: 1px solid #000000;
+
+        .currency {
+            font-size: 13px;
+        }
+    }
+
+    .guestInfo-container {
+        padding-top: 10px;
+
+        .payment-card-info-container {
+            background-color: lightgrey;
+        }
+
+        .cancellation-policy {
+            margin: 15px 0px;
+
+            p.content {
+                padding: 0px 10px;
+                font-size:13px;
+            }
+        }
+
+        .book-now-button {
+            margin: 15px 0px;
+            text-align: center;
+
+            button {
+                width: 85%;
+            }
+        }
+    }
+
+    .rateDesc-container {
+        padding-top: 10px;
+    }
+
+    .rate-card {
+        margin: 10px 0px;
+    }
+
+    .additional-charge-desc, .night-rate, .room-guest-details, .room-rate-rules, .room-parking, .room-pet-policy {
+        margin: 7px 0px;
+
+        h6 {
+            font-weight: bold;
+        }
+    }
+
+}
+

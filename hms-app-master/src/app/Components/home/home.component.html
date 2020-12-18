@@ -1,0 +1,183 @@
+<div class="jumbotron jumbotron-fluid bg-light">
+    <div class="jumbotron-content">
+        <div class="container text-center text-white">
+            <h1>DISCOVER</h1>
+            <h1>COZY ROOMS</h1>
+            <h4>PERFECT FOR ANY TRIP</h4>
+            
+            <div class="form-container">
+                    <div *ngIf="CheckAvailabilityError">
+                        <div class="alert alert-danger">{{CheckAvailabilityErrorMsg}}</div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <select name="location" class="form-control form-control-lg" (change)="OnLocationSelection($event.target.value)">
+                                <option value="0">-- Location --</option>
+                                <option *ngFor="let item of location.dataset;" value="{{item.value}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <!-- <select name="checkin" class="form-control form-control-lg" (change)="OnCheckInDateSelection($event.target.value)">
+                                <option value="0">-- Check in --</option>
+                                <option *ngFor="let item of checkInDates.dataset;" value="{{item}}">{{item}}</option>
+                            </select> -->
+                            <input type="date" name="checkin-date" id="checkin-date" class="form-control form-control-lg" min="{{checkInMinDate}}" (change)="OnCheckInDateSelection($event.target.value)" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <!-- <select name="checkout" class="form-control form-control-lg" (change)="OnCheckOutDateSelection($event.target.value)">
+                                <option value="0">-- Check out --</option>
+                                <option *ngFor="let item of checkOutDates.dataset;" value="{{item}}">{{item}}</option>
+                            </select> -->
+                            <input type="date" name="checkout-date" id="checkout-date" class="form-control form-control-lg"  min="{{checkOutMinDate}}" (change)="OnCheckOutDateSelection($event.target.value)" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <select name="checkout" class="form-control custom-select-lg" (change)="OnRoomTypeSelection($event.target.value)">
+                                <option value="0">-- Room --</option>
+                                <option *ngFor="let item of rooms.dataset;" value="{{item.value}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button class="btn btn-success btn-lg" (click)="OnCheckAvailability()">Check Availability</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hotel-intro container-fluid bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img class="img-responsive" src="assets/images/hotel-intro.jpg" />
+            </div>
+            <div class="col-md-6 p-3">
+                <div class="text-center">
+                    <h2>Relax at Our Hotel</h2>
+                    <p>
+                        Hotel and Suites is a family-owned Boutique Hotel that desires to cater and provide guests with
+                        personalized hospitality based on what they prefer.
+                    </p>
+                    <p>
+                        Whether the guest is looking for quiet time and lots of privacy or seeking energetic, friendly
+                        environment in the most delightful place away from home, we can provide it.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hotel-rooms container-fluid">
+    <div class="container">
+        <h4 class="text-center">
+            Our <strong>Rooms</strong>
+        </h4>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="assets/images/singleroom.jpg" alt="Card image">
+                    <div class="card-body">
+                        <div class="clearfix room-info">
+                            <span class="float-left price">Single Room</span>
+                            <span class="float-right count"><strong>1 Guest</strong></span>
+                        </div>
+                        <div class="clearfix card-text">
+                            <p class="text-justify">
+                                Featuring all the modern-day essentials, including a flat screen TV with satellite channels, 
+                                tea & coffee making facilities and high-speed internet, our Double rooms are the perfect environment 
+                                to work or relax. Our standard Single room offers a queen size bed. Maximum capacity of 2 guests.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="assets/images/doubleroom.jpg" alt="Card image">
+                    <div class="card-body">
+                        <div class="clearfix room-info">
+                            <span class="float-left price">Double Room</span>
+                            <span class="float-right count"><strong>2 Guests</strong></span>
+                        </div>
+                        <div class="clearfix card-text">
+                            <p class="text-justify">
+                                Featuring a king size bed with stunning views with airy and stylish surroundings, 
+                                separate bath and walk in shower and all the modern-day essentials, 
+                                including a flat screen TV with satellite channels, tea & coffee making facilities and high-speed internet. Maximum capacity of 2 guests.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="assets/images/familyroom.jpg" alt="Card image">
+                    <div class="card-body">
+                        <div class="clearfix room-info">
+                            <span class="float-left price">Family Room</span>
+                            <span class="float-right count"><strong>3 Guests</strong></span>
+                        </div>
+                        <div class="clearfix card-text">
+                            <p class="text-justify">
+                                Furnished and equipped with everything 
+                                you need to make you feel like you are staying at a home away from home. Enjoy spacious 
+                                surroundings with two queen size beds, a comfy work area and stay connected with 
+                                complimentary internet. Maximum capacity of 4 guests.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hotel-amenities container-fluid bg-light">
+    <div class="container">
+        <div class="content text-center">
+            <h3>
+                <section>Relax and Enjoy</section>
+                <i>Your Holiday</i>
+            </h3>
+            <p class="text-center">
+                With a variety of activities and amenities available at our hotel,<br/>
+                you will surely have a great stay at our city and enjoy your holiday.
+            </p>
+            <button class="btn btn-danger btn-lg text-uppercase">Read More</button>
+        </div>
+    </div>
+</div>
+
+<div class="hotel-services container-fluid">
+    <div class="container">
+        <h4 class="text-center">
+            Right Services <strong>for Great Customers</strong>
+        </h4>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="icon text-warning"><i class="fa fa-swimmer fa-2x"></i></div>
+                <h5>Swimming Pool</h5>
+                <p>One of the main attractions at the hotel is our extensive, luxurious 20-metre indoor swimming pool.
+                </p>
+            </div>
+            <div class="col-md-3">
+                <div class="icon text-warning"><i class="fa fa-wifi fa-2x"></i></div>
+                <h5>Free Wi-Fi</h5>
+                <p>Serene Neuk offers high-speed internet facility at all our locations that you can enjoy throughout the period of your stay.
+                </p>
+            </div>
+            <div class="col-md-3">
+                <div class="icon text-warning"><i class="fa fa-utensils fa-2x"></i></div>
+                <h5>Restaurents</h5>
+                <p>Serene Neuk offers a wide range of cuisine that spreads the globe on our buffet table. Be prepared for a culture shock or a surprise of your comfort food at our restaurants.
+                </p>
+            </div>
+            <div class="col-md-3">
+                <div class="icon text-warning"><i class="fa fa-car fa-2x"></i></div>
+                <h5>Car Rentals</h5>
+                <p>Serene Neuk allows its customers to rent cars available at every hotel for exploring the nearby attractions in the city.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

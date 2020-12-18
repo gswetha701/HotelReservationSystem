@@ -1,0 +1,49 @@
+.signin-container {
+    padding: 80px 0px;
+    display: flex;
+    width: 90%;
+    margin: auto;
+
+    h5 {
+        padding: 15px 0px;
+    }
+}
+
+.logged-user-container {
+    padding: 80px 0px;
+    display: flex;
+    width: 90%;
+    margin: auto;
+
+    .logged-user-view {
+        width: 100%;
+    }
+
+    h5 {
+        padding: 15px 0px;
+    }
+
+    .redirects-container {
+        margin: 25px 0px;
+    }
+}
+
+.login-container {
+    padding: 10px;
+    margin: 10px 0px;
+
+    form {
+        margin: 5px 0px;
+        width: 85%;
+    }
+}
+
+.signup-container {
+    padding: 10px;
+    margin: 10px 0px;
+
+    form {
+        margin: 5px 0px;
+        width: 85%;
+    }
+}

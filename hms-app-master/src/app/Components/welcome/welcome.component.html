@@ -1,0 +1,21 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron-content">
+    <div class="container text-white">
+      <h2>Welcome</h2>
+    </div>
+  </div>
+</div>
+<div class="container-fluid logged-user-container" *ngIf="isUserSignedIn">
+  <div class="container logged-user-view">
+    <p>Click Below to view your data</p>
+    <div class="redirects-container">
+      <button
+        class="btn btn-outline-success btn-lg"
+        routerLink="/viewbooking"
+        routerLinkActive="active"
+      >
+        View Bookings
+      </button>
+    </div>
+  </div>
+</div>

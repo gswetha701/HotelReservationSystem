@@ -1,0 +1,42 @@
+<div class="container-fluid bg-dark fixed-top">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand text-white" routerLink="/home">Serene Neuk Hotels</a>
+      <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/discover" routerLinkActive="active">Discover</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/locations" routerLinkActive="active">Locations</a>
+          </li>
+        </ul>
+
+        <button class="btn btn-outline-success btn-sm ml-md-5 mr-1" routerLink="/viewbooking" routerLinkActive="active"> 
+          View Booking
+        </button>
+
+        <button *ngIf="!userLoggedIn" class="btn btn-outline-success btn-sm mr-1" routerLink="/signin" routerLinkActive="active">
+          Sign In
+        </button>
+
+        <button *ngIf="userLoggedIn" class="btn btn-outline-success btn-sm mr-1" (click)="OnSignOutClick();">
+          Sign Out
+        </button>
+
+        <ul class="navbar-nav mt-2 mt-lg-0" *ngIf="showUserName">
+          <li class="nav-item">
+            <a class="nav-link">Hi {{ userName }}</a>
+          </li>
+        </ul>
+
+        
+      </div>
+    </nav>
+  </div>
+</div>

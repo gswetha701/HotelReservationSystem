@@ -1,0 +1,192 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron-content">
+    <div class="container text-white">
+      <h2>Booking Information</h2>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="view-booking-container">
+      <form
+        class="form-inline"
+        [formGroup]="viewBookingForm"
+        (ngSubmit)="onViewBookingSubmit()"
+      >
+        <label for="bookingId" class="mr-sm-2"
+          >Enter Booking Id to view status:</label
+        >
+        <input
+          type="text"
+          class="form-control mb-2 mr-sm-2"
+          placeholder="Booking ID"
+          formControlName="bookingId"
+          id="bookingId"
+        />
+        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        <span class="pl-2" *ngIf="showBookingLoader"
+          ><i class="fas fa-spinner fa-pulse"></i
+        ></span>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="container">
+    <div>
+      <p>
+        Provide you Booking Id and click "Submit" to check details about your
+        booking
+      </p>
+    </div>
+    <div *ngIf="hasBookingInfo" class="bg-light">
+      <h4 class="text-center booking-info-heading">Booking Information</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="text-center">Hotel Information</h5>
+          <div class="row">
+            <div class="col-md-6 text-right">
+              <p>Location:</p>
+              <p>Booking Id:</p>
+              <p>Room Type:</p>
+              <p>No of Room(s):</p>
+              <p>Confirm Status:</p>
+              <p>Payment Status:</p>
+            </div>
+            <div class="col-md-6">
+              <p>{{ bookingInfo.location | titlecase }}</p>
+              <p>
+                {{ bookingInfo.booking_id }}
+                <input
+                  type="hidden"
+                  id="booking_id"
+                  value="{{ bookingInfo.booking_id }}"
+                />
+              </p>
+              <p>{{ bookingInfo.room_type | titlecase }} Room</p>
+              <p>{{ bookingInfo.rooms }}</p>
+              <p>{{ bookingInfo.confirm_status }}</p>
+              <p>{{ bookingInfo.payment_status }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h5 class="text-center">Guest Information</h5>
+          <div class="row">
+            <div class="col-md-6 text-right"><p>No of Adult(s):</p> </div>
+            <div class="col-md-6"><p>{{ bookingInfo.adults }}</p></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-right"><p>No of Children(s):</p></div>
+            <div class="col-md-6"><p>{{ bookingInfo.children }}</p></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-right"><p>Check-In:</p></div>
+            <div class="col-md-6"><p>{{ bookingInfo.check_in }}</p></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-right"><p>Check-Out:</p></div>
+            <div class="col-md-6"><p>{{ bookingInfo.check_out }}</p></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-right">No of Day(s):</div>
+            <div class="col-md-6"><p>{{ bookingInfo.days }}</p></div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="text-center btn-container mb-3"
+        *ngIf="isUserLoggedIn && bookingInfo.confirm_status !== 'Cancelled'"
+      >
+        <button class="btn btn-success mr-1" (click)="onCancelBookingSubmit()">
+          <i class="fa fa-cancel mr-1"></i>Cancel Booking
+        </button>
+        <span class="pl-2" *ngIf="cancelBookingLoader"
+          ><i class="fas fa-spinner fa-pulse"></i
+        ></span>
+      </div>
+    </div>
+    <div class="no-booking" *ngIf="noBookingInfo">
+      <h4 class="text-center">No Booking Available</h4>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="showMyBookings">
+  <div class="container">
+    <div class="my-bookings">
+      <h5>Bookings</h5>
+      <div id="accordion">
+        <div class="card" *ngFor="let item of myBookingData">
+          <div class="card-header">
+            <a
+              class="card-link"
+              data-toggle="collapse"
+              href="#collapse-{{item.booking_id}}"
+            >
+              {{ item.booking_id }} - {{ item.location | titlecase }}
+            </a>
+          </div>
+          <div
+            id="collapse-{{item.booking_id}}"
+            class="collapse show"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <h5 class="text-center">Hotel Information</h5>
+                  <div class="row">
+                    <div class="col-md-6 text-right">
+                      <p>Location:</p>
+                      <p>Booking Id:</p>
+                      <p>Room Type:</p>
+                      <p>No of Room(s):</p>
+                      <p>Confirm Status:</p>
+                      <p>Payment Status:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ item.location | titlecase }}</p>
+                      <p>
+                        {{ item.booking_id }}
+                      </p>
+                      <p>{{ item.room_type | titlecase }} Room</p>
+                      <p>{{ item.rooms }}</p>
+                      <p>{{ item.confirm_status }}</p>
+                      <p>{{ item.payment_status }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <h5 class="text-center">Guest Information</h5>
+                  <div class="row">
+                    <div class="col-md-6 text-right"><p>No of Adult(s):</p> </div>
+                    <div class="col-md-6"><p>{{ item.adults }}</p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 text-right"><p>No of Children(s):</p></div>
+                    <div class="col-md-6"><p>{{ item.children }}</p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 text-right"><p>Check-In:</p></div>
+                    <div class="col-md-6"><p>{{ item.check_in }}</p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 text-right"><p>Check-Out:</p></div>
+                    <div class="col-md-6"><p>{{ item.check_out }}</p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 text-right">No of Day(s):</div>
+                    <div class="col-md-6"><p>{{ item.days }}</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

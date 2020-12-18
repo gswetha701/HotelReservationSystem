@@ -1,0 +1,255 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron-content">
+    <div class="container text-white">
+      <h2>Booking</h2>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="container payment-container">
+    <h2>Let's reserve it.</h2>
+
+    <div class="selectedHotel">
+      <div class="row">
+        <div class="col-md-3">
+          <img class="img-responsive roomImage" src="{{ selectedRoomImage }}" />
+        </div>
+        <div class="col-md-9">
+          <div>
+            <div class="hotelTitle text-success">Hotel : {{selectedLocation}} - {{selectedHotelName}}</div>
+            <div class="hotelAddress">
+              {{selectedHotelAddress}}
+            </div>
+            <div class="hotelCheckInCheckOut">
+              <span class="checkInTime">Check in: 2:00 PM</span>
+              <span class="checkOutTime pl-2">Check out: 11:00 AM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-dark text-white selectedDataContainer">
+      <div>
+        <span class="selectedLocation">{{ selectedLocation }}</span>
+        <span class="selectedDates">{{selectedCheckInDate}} - {{selectedCheckOutDate}}</span>
+        <span class="selectedRoomType">{{selectedRoomType}} Room</span>
+      </div>
+    </div>
+
+    <div class="bg-light roomInfo-Container">
+      <div class="alert alert-danger text-center">
+        <p>
+          This hotel remains open to welcome guests as per Government's new
+          restrictions
+        </p>
+      </div>
+      <div class="roomInfo">
+        <div class="row">
+          <div class="col-md-6 mr-auto">
+            <div class="roomDetail">
+              <h4 class="text-uppercase">{{selectedRoomType}} Bed Room Nonsmoking</h4>
+              <div>Best Flexible with Breakfast</div>
+            </div>
+
+            <div class="roomPrice">
+              <div class="row">
+                <div class="col-md-8 text-left">
+                  <h5>Total Price for Stay</h5>
+                </div>
+                <div class="col-md-4 text-right">
+                  <h5>{{ selectedHotelRoomPrice }} <span class="currency">{{ selectedCurrency }}</span></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-success" *ngIf="bookingSuccessMsg">
+          Booking Successful - Booking Id {{bookingId}} - 
+          <button class="btn btn-outline-success btn-sm" routerLink="/viewbooking" >View Booking</button>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 guestInfo-container">
+            <h5>Guest Information</h5>
+            <form [formGroup]="bookingForm" (ngSubmit)="onBookingSubmit()" novalidate>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="adults">Adults <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" formControlName="adults" id="adults" />
+                  <div class="alert alert-danger" *ngIf="bookingForm.get('adults').errors && bookingFormSubmitAttempt">
+                    Adult value is required
+                  </div>
+                  <div class="alert alert-danger" *ngIf="bookingForm.get('adults').invalid && bookingForm.get('adults').errors.pattern && bookingFormSubmitAttempt">
+                    Enter Only Numbers
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="children">Children</label>
+                  <input type="text" class="form-control" formControlName="children" id="children" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="firstname">Firstname <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" formControlName="first_name" id="firstname" />
+                  <div class="alert alert-danger" *ngIf="bookingForm.get('first_name').errors && bookingFormSubmitAttempt">
+                    Firstname is required
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="lastname">Lastname <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" formControlName="last_name" id="lastname" />
+                  <div class="alert alert-danger" *ngIf="bookingForm.get('last_name').errors && bookingFormSubmitAttempt">
+                    Lastname is required
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail4">Email Address <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" formControlName="email" id="inputEmail4" />
+                <div class="alert alert-danger" *ngIf="bookingForm.get('email').hasError('required') && bookingFormSubmitAttempt">
+                  Email is required
+                </div>
+                <div class="alert alert-danger" *ngIf="!bookingForm.get('email').hasError('required') && bookingForm.get('email').errors && bookingFormSubmitAttempt">
+                  Email is not valid
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="inputPhone">Phone Number</label>
+                <input type="text" class="form-control" formControlName="phone" id="inputPhone" />
+              </div>
+
+              <div class="payment-card-info-container p-2">
+                <p class="font-weight-bold">Payment Information</p>
+                <p>Reserve with payment card</p>
+                <p>Your room will be held until your arrival on the day of your check-in</p>
+
+                <div class="card-form-container">
+                  <div class="form-group">
+                    <label for="card_number">Card Number <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="card_number" maxlength="16" id="card_number" />
+                    <div class="alert alert-danger" *ngIf="bookingForm.get('card_number').errors && bookingFormSubmitAttempt">
+                      Card Number is required
+                    </div>
+                    <div class="alert alert-danger" *ngIf="bookingForm.get('card_number').invalid && bookingForm.get('card_number').errors.pattern && bookingFormSubmitAttempt">
+                      Enter Only Numbers
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="expmonth">Expiry Month <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" formControlName="card_exp_month" maxlength="2" id="expmonth" />
+                      <div class="alert alert-danger" *ngIf="bookingForm.get('card_exp_month').errors && bookingFormSubmitAttempt">
+                        Exp Month is required
+                      </div>
+                      <div class="alert alert-danger" *ngIf="bookingForm.get('card_exp_month').invalid && bookingForm.get('card_exp_month').errors.pattern && bookingFormSubmitAttempt">
+                        Enter Only Numbers
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="expmonth">Expiry Year <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" formControlName="cardexp_year" maxlength="4" id="expyear" />
+                      <div class="alert alert-danger" *ngIf="bookingForm.get('cardexp_year').errors && bookingFormSubmitAttempt">
+                        Exp Year is required
+                      </div>
+                      <div class="alert alert-danger" *ngIf="bookingForm.get('cardexp_year').invalid && bookingForm.get('cardexp_year').errors.pattern && bookingFormSubmitAttempt">
+                        Enter Only Numbers
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cancellation-policy p-2">
+                  <p class="font-weight-bold">Cancellation Policy</p>
+                  <p class="content">
+                    Cancelling your reservation or failing to show will result in a charge 
+                    of 1 night per room to your credit card or other guaranteed payment method.
+                    Taxes may apply. Failing to call or show before check-out time after the first
+                    night of reservation will result in cancellation of the remainder of your reservation
+                  </p>
+                </div>
+
+              </div>
+              
+              <div class="book-now-button">
+                <button type="submit" class="btn btn-warning">Book Reservation</button>
+                <span class="pl-2" *ngIf="showBookingLoader"><i class="fas fa-spinner fa-pulse"></i></span>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6 bg-white rateDesc-container">
+            <h5>Rate Description</h5>
+            <div>
+                Full breakfast daily for up to two adults sharing a room. Supplemental fee for additional guests.
+            </div>
+
+            <div class="pt-3">Itemised nightly rates, taxes, and fees for 1 Room</div>
+            <div class="rate-card bg-light p-4">
+                <div class="row">
+                    <div class="col-md-8 text-left">
+                        {{ selectedCheckInDate }} - {{ selectedCheckOutDate }}
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <span>{{ selectedHotelRoomPrice }}</span>
+                        <span class="p-2">{{ selectedCurrency }}</span>
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-md-8 text-left">
+                        Price for 1 room(s) and {{days}} night(s)
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <span>{{ selectedHotelRoomPrice }}</span>
+                        <span class="p-2">{{ selectedCurrency }}</span>
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-md-8 text-left">
+                        Estimated Total Price:
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <span>{{ selectedHotelRoomPrice }}</span>
+                        <span class="p-2">{{ selectedCurrency }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="additional-charge-desc">
+              <h6>Description of Taxes and Additional Charges</h6>
+              <p>
+                5% per night included in rate effective {{ selectedCheckInDate }} thru {{ selectedCheckOutDate }}
+              </p>
+            </div>
+            <div class="night-rate">
+              <h6>Nightly Rate</h6>
+              <p>{{ defaultRoomPrice }} {{ selectedCurrency }} per room, per night</p>
+            </div>
+            <div class="room-guest-details">
+              <h6>Maximum # of Persons per Room Allowed</h6>
+              <p>2 persons max</p>
+            </div>
+            <div class="room-rate-rules">
+              <h6>Rate Rules</h6>
+              <div>Check-In Time: 2.00 PM</div>
+              <div>Check-Out Time: 11.00 PM</div>
+              <div>VAT: Rate Includes VAT</div>
+            </div>
+            <div class="room-parking">
+              <h6>Parking</h6>
+              <div>
+                Guests can obtain 15% discounted parking on prebookings with Q-park located near by the hotel. Contact hotel for details.
+              </div>
+            </div>
+            <div class="room-pet-policy">
+              <h6>Pet Policy</h6>
+              <div>Assistance dogs for guests with a visual or hearing impairment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

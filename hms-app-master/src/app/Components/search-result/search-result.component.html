@@ -1,0 +1,67 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron-content">
+        <div class="container text-white">
+            <h2>Results</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container page-content">
+        <h2 class="page-title">Select a Hotel</h2>
+        <div class="bg-dark text-white selectedDataContainer">
+            <div>
+                <span class="selectedLocation">{{ selectedLocation }}</span>
+                <span class="selectedDates">{{selectedCheckInDate}} - {{selectedCheckOutDate}}</span>
+                <span class="selectedRoomType">{{selectedRoomType}} Room</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bg-light">
+    <div class="container result-content">
+        <div class="row results-count">
+            <div class="col-md-10 text-left">{{results.data.length}} Hotels Found</div>
+            <div class="col-md-2 text-right">
+                <div class="form-inline text-right">
+                    <label>Currency: </label>
+                    <select class="custom-select ml-2" (change)="onChangeCurrency($event.target.value)">
+                        <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
+                        <option value="INR">INR</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row result-data" *ngFor="let item of results.data;">
+            <div class="col-md-3">
+                <img class="img-responsive roomImage" src="{{item.hotelRoomImage}}" />
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6 nopadding">
+                        <h5>{{ item.hotelName }} - {{ item.hotelRoomType | titlecase }}</h5>
+                        <div class="hotel-address">
+                            <p class="font-weight-bold">{{ item.hotelAddress }}</p>
+                            <p>Reservations {{ item.hotelReservation }}</p>
+                            <p>Front Desk {{ item.hotelFrontDesk }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 nopadding text-right">
+                        <div *ngFor="let feature of item.hotelFeatures;">{{ feature }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="price-container text-center">
+                    <div class="price-data">
+                        <div class="price">{{ item.hotelPrice }} <span class="pl-2">{{ selectedCurrency }}</span></div>
+                        <button class="btn btn-success btn-sm" (click)="OnSelectHotel(item)">Select Hotel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

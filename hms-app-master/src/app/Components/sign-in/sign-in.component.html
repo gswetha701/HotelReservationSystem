@@ -1,0 +1,134 @@
+<div class="row signin-container" *ngIf="!isUserSignedIn">
+  <div class="col-xs-12 col-sm-12 col-md-6">
+    <div class="login-container">
+      <h5>Already having an account? Sign In</h5>
+      <div class="text-danger text-center p-1" *ngIf="LoginError">{{ LoginErrorMsg }}</div>
+      <form [formGroup]="logInForm" (ngSubmit)="onLogInSubmit()">
+        <div class="form-group">
+          <label for="email">Email <span class="text-danger">*</span></label>
+          <input type="email" class="form-control" formControlName="email" />
+          <div class="alert alert-danger" *ngIf="logInForm.get('email').hasError('required') && loginFormSubmitAttempt">
+            Email is required
+          </div>
+          <div class="alert alert-danger" *ngIf="!logInForm.get('email').hasError('required') && logInForm.get('email').errors && loginFormSubmitAttempt">
+            Email is not valid
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password <span class="text-danger">*</span></label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+          />
+          <div class="alert alert-danger" *ngIf="logInForm.get('password').hasError('required') && loginFormSubmitAttempt">
+            Password is required
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Sign In</button>
+        <span class="pl-2" *ngIf="showLoginLoader"><i class="fas fa-spinner fa-pulse"></i></span>
+      </form>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6">
+    <div class="signup-container">
+      <h5>Don't have an account? Please Sign Up</h5>
+      <div class="text-danger text-center p-1" *ngIf="SignUpError">{{ SignUpErrorMsg }}</div>
+      <div class="text-success text-center p-1" *ngIf="SignUpSuccess">{{ SignUpSuccessMsg }}</div>
+      <form [formGroup]="signUpForm" (ngSubmit)="onSignUpSubmit()" novalidate>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstname">Firstname <span class="text-danger">*</span></label>
+            <input type="text" formControlName="first_name" class="form-control"
+              id="firstname"
+            />
+            <div class="alert alert-danger" *ngIf="signUpForm.get('first_name').errors && signupFormSubmitAttempt">
+              Firstname is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastname">Lastname <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              formControlName="last_name"
+              class="form-control"
+              id="lastname"
+            />
+            <div class="alert alert-danger" *ngIf="signUpForm.get('last_name').errors && signupFormSubmitAttempt">
+              Lastname is required
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email <span class="text-danger">*</span></label>
+            <input
+              type="email"
+              formControlName="email"
+              class="form-control"
+              id="inputEmail4"
+            />
+            <div class="alert alert-danger" *ngIf="signUpForm.get('email').hasError('required') && signupFormSubmitAttempt">
+              Email is required
+            </div>
+            <div class="alert alert-danger" *ngIf="!signUpForm.get('email').hasError('required') && signUpForm.get('email').errors && signupFormSubmitAttempt">
+              Email is not valid
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password <span class="text-danger">*</span></label>
+            <input
+              type="password"
+              formControlName="password"
+              class="form-control"
+              id="inputPassword4"
+            />
+            <div class="alert alert-danger" *ngIf="signUpForm.get('password').hasError('required') && signupFormSubmitAttempt">
+              Password is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPhone">Phone</label>
+          <input
+            type="text"
+            formControlName="phone"
+            class="form-control"
+            id="inputPhone"
+          />
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address</label>
+          <input
+            type="text"
+            formControlName="address"
+            class="form-control"
+            id="inputAddress"
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCountry">Country</label>
+            <input
+              type="text"
+              formControlName="country"
+              class="form-control"
+              id="inputCountry"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputZip">Zip</label>
+            <input
+              type="text"
+              formControlName="postal_code"
+              class="form-control"
+              id="inputZip"
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Sign Up</button>
+        <span class="pl-2" *ngIf="showSignUpLoader"><i class="fas fa-spinner fa-pulse"></i></span>
+      </form>
+    </div>
+  </div>
+</div>
